@@ -1,6 +1,9 @@
 <template>
     <div class="cart">
-    <h3>This is where the basket will show up</h3>
+    <h2>Shopping Cart</h2>
+    <div>
+        <div>Total: {{getTotal}}</div>
+    </div>
         
 
     </div>
@@ -9,10 +12,23 @@
 
 <script>
 export default {
-    
+    data() {
+        return {
+
+        }
+    },
+    computed: {
+        getTotal() {
+            return this.$store.getters.getTotal;
+        }
+    }
 }
 </script>
 
-<style>
+<style scoped>
+.cart {
+    margin-top: 4rem;
+    margin-left: 6rem;
+}
 
 </style>
