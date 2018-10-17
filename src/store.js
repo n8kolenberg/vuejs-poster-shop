@@ -7,11 +7,13 @@ export default new Vuex.Store({
   state: {
     total: 0
   },
+  //Get the total to show in the basket
   getters: {
     getTotal(state) {
       return state.total;
     }
   },
+  //These will in the end do the updating of the stored data in the store's state data
   mutations: {
     increaseTotal(state, payload) {
       console.log('incrementing total through mutation in store');
@@ -22,6 +24,7 @@ export default new Vuex.Store({
     },
 
   },
+  //Asynchronous actions that will call the mutations to update the state of the store
   actions: {
     increaseTotal({commit}, payload) {
       console.log('increaseTotal action in store is now called');
