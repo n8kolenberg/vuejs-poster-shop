@@ -1,10 +1,12 @@
 <template>
     <div class="products">
-        <div>
-            <p>Product 1</p>
-            <small>{{price}}</small>
+        <div class="iterable" v-for="item in amount">
+            <div>
+                <h4 class="product-title">Product 1</h4>
+                <small>{{price}}</small>
+            </div>
+            <button class="btn btn-medium btn-info add-to-cart" @click="AddToCart({by: price})">Add to Cart</button>
         </div>
-        <button class="btn btn-medium btn-info" @click="AddToCart({by: price})">Add to Cart</button>
     </div>
 </template>
 
@@ -13,7 +15,7 @@
         data() {
             return {
                 price: 20,
-                amount: 0
+                amount: 5
             }
         },
         methods: {
@@ -26,5 +28,9 @@
 </script>
 
 <style scoped>
-
+ .iterable {
+     padding-bottom: 1rem;
+     margin-bottom: 1rem;
+     border: 1px solid lightgray;
+ }
 </style>
