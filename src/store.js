@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    total: 0
+    total: 0,
+    cartItems: []
   },
   //Get the total to show in the basket
   getters: {
