@@ -3,8 +3,10 @@
         <h2>Shopping Cart</h2>
         <ul>
             <li class="cart-item" v-for="item in cart">
-                <div class="item-title">{{ item.title }}</div>
-                <span class="item-qty">{{ item.quantity }}</span>
+                <div class="item-title">Name {{ item.name }}</div>
+                <span class="item-qty">Quantity {{ item.quantity }}</span>
+                <span class="item-price">Price {{ item.price }}</span>
+
             </li>
         </ul>
         <div v-if="cart.length">
@@ -21,11 +23,13 @@
 export default {
     data() {
         return {
-            cart: []
+            cart: [{name: "", quantity: 0, price: 0}]
         }
     },
     computed: {
         getTotal() {
+            this.cart = this.$store.getters.getCartItems;
+            // console.log(this.cart);
             return this.$store.getters.getTotal;
         }
     },
