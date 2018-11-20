@@ -3,7 +3,7 @@
         <h2>Shopping Cart</h2>
         <ul>
             <li class="cart-item" v-for="item in cart">
-                <div class="item-title">Name {{ item.name }}</div>
+                <div class="item-title">Product {{ item.id }}</div>
                 <span class="item-qty">Quantity {{ item.quantity }}</span>
                 <span class="item-price">Price {{ item.price }}</span>
 
@@ -23,7 +23,7 @@
 export default {
     data() {
         return {
-            cart: [{name: "", quantity: 0, price: 0}]
+            cart: [{id: "", quantity: 0, price: 0}]
         }
     },
     computed: {

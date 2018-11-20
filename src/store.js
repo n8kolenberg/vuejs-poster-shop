@@ -20,9 +20,23 @@ export default new Vuex.Store({
   //These will in the end do the updating of the stored data in the store's state data
   mutations: {
     increaseTotal(state, payload) {
-      console.log('incrementing total through mutation in store');
+      //Creating a found flag
+      var found = false;
+      //Iterate through all the cartItems in the store
+      state.cartItems.forEach((val, index) => {
+        //If the item we want to add is already in the cartItems
+        if(val.id == payload.id) {
+          //change the flag to true and just increase the quantity of that particular cartItem
+          found = true;
+          val.quantity++
+        }
+      });
+      //If it's not found through the iteration above, just push it to the cartItems
+      if(!found) {
+        state.cartItems.push({ id: payload.id, price: payload.by, quantity: payload.quantity });
+      }
+      //Increase the overall cart total
       state.total += payload.by;
-      state.cartItems.push({name: payload.name, price: payload.by, quantity: payload.quantity});
     },
     decreaseTotal(state, payload) {
       state.total -= payload;
