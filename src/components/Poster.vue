@@ -5,7 +5,7 @@
                 <h4 class="product-title">Product {{id + key}}</h4>
                 <small>{{price * key}}</small>
             </div>
-            <button class="btn btn-medium btn-info add-to-cart" @click="AddToCart({id: `Product ${id+key}`, by: price*key, quantity: 1})">Add to Cart</button>
+            <button class="btn btn-medium btn-info add-to-cart" @click="AddToCart({id: `${id+key}`, by: price*key, quantity: 1})">Add to Cart</button>
         </div>
     </div>
 </template>

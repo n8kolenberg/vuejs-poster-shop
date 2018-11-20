@@ -38,6 +38,7 @@ export default new Vuex.Store({
       //Increase the overall cart total
       state.total += payload.by;
     },
+    
     decreaseTotal(state, payload) {
       state.total -= payload;
     },

@@ -4,13 +4,12 @@
         <ul>
             <li class="cart-item" v-for="item in cart">
                 <div class="item-title">Product {{ item.id }}</div>
-                <span class="item-qty">Quantity {{ item.quantity }}</span>
-                <span class="item-price">Price {{ item.price }}</span>
+                <span class="item-qty">${{item.price.toFixed(2)}} x {{ item.quantity }} </span>
 
             </li>
         </ul>
         <div v-if="cart.length">
-            <div>Total: {{getTotal}}</div>
+            <div>Total: ${{getTotal.toFixed(2)}}</div>
         </div>
         <div v-else>No items in the cart</div>
         
