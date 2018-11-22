@@ -5,11 +5,12 @@
             <li class="cart-item" v-for="item in cart">
                 <div class="item-title">Product {{ item.id }}</div>
                 <span class="item-qty">${{item.price.toFixed(2)}} x {{ item.quantity }} </span>
-
+                <button class="btn" @click="remove(item)">-</button>
+                <button class="btn"@click="addToCart(item)">+</button>
             </li>
         </ul>
         <div v-if="cart.length">
-            <div>Total: ${{getTotal.toFixed(2)}}</div>
+            <div>Total: {{getTotal | currency}}</div>
         </div>
         <div v-else>No items in the cart</div>
         
@@ -22,10 +23,12 @@
 export default {
     data() {
         return {
-            cart: [{id: "", quantity: 0, price: 0}]
+            //Basic cart to start with 
+            cart: this.$store.getters.getCartItems
         }
     },
     computed: {
+        //Getting the total cart amount from the store
         getTotal() {
             this.cart = this.$store.getters.getCartItems;
             // console.log(this.cart);
@@ -33,9 +36,14 @@ export default {
         }
     },
     methods: {
-        updateCart() {
+        remove(payload) {
+            this.$store.dispatch('decreaseTotal', payload);
+        },
 
+        addToCart(payload) {
+            this.$store.dispatch('increaseTotal', payload);
         }
+
     }
 }
 </script>

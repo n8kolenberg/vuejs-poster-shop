@@ -3,9 +3,9 @@
         <div class="iterable" v-for="(item, key) in amount">
             <div>
                 <h4 class="product-title">Product {{id + key}}</h4>
-                <small>{{price * key}}</small>
+                <small>{{price * key | currency}}</small>
             </div>
-            <button class="btn btn-medium btn-info add-to-cart" @click="AddToCart({id: `${id+key}`, by: price*key, quantity: 1})">Add to Cart</button>
+            <button class="btn btn-medium btn-info add-to-cart" @click="AddToCart({id: `${id+key}`, price: price*key, quantity: 1})">Add to Cart</button>
         </div>
     </div>
 </template>
@@ -21,6 +21,7 @@
         },
         methods: {
             AddToCart(payload) {
+                //Increasing the total in the store
                 this.$store.dispatch('increaseTotal', payload);
                 // console.log(`Total is now ${this.$store.state.total}`);
             }

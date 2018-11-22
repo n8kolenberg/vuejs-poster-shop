@@ -8,6 +8,8 @@ axios.defaults.baseURL = process.env.VUE_APP_IMGURURL
 
 Vue.config.productionTip = false
 
+Vue.filter("currency", price => `$${price.toFixed(2)}`);
+
 new Vue({
   router,
   store,

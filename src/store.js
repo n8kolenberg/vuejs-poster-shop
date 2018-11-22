@@ -33,21 +33,30 @@ export default new Vuex.Store({
       });
       //If it's not found through the iteration above, just push it to the cartItems
       if(!found) {
-        state.cartItems.push({ id: payload.id, price: payload.by, quantity: payload.quantity });
+        state.cartItems.push({ id: payload.id, price: payload.price, quantity: payload.quantity });
       }
       //Increase the overall cart total
-      state.total += payload.by;
+      state.total += payload.price;
+      console.log(`Total: ${state.total}`);
     },
     
     decreaseTotal(state, payload) {
-      state.total -= payload;
-    },
+      //Iterate through all the cartItems in the store
+      state.cartItems.forEach((val, index, array)=>{
+        if(val.id == payload.id && val.quantity > 1) {
+          val.quantity--;
+        } else if(val.id == payload.id && val.quantity == 1) {
+          array.splice(index-1, 1);
+        } 
+        
+      });
+      //state.total = the quantity of all the cartItems times their individual prices
+    }
 
   },
   //Asynchronous actions that will call the mutations to update the state of the store
   actions: {
     increaseTotal({commit}, payload) {
-      console.log('increaseTotal action in store is now called');
       commit('increaseTotal', payload);
     },
     decreaseTotal({commit}, payload) {
