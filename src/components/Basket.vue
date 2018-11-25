@@ -3,7 +3,7 @@
         <h2>Shopping Cart</h2>
         <ul>
             <li class="cart-item" v-for="item in cart">
-                <div class="item-title">Product {{ item.id }}</div>
+                <div class="item-title"> {{ item.name }}</div>
                 <span class="item-qty">${{item.price.toFixed(2)}} x {{ item.quantity }} </span>
                 <button class="btn" @click="remove(item)">-</button>
                 <button class="btn"@click="addToCart(item)">+</button>

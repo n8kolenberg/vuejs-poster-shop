@@ -44,7 +44,7 @@ export default new Vuex.Store({
       });
       //If it's not found through the iteration above, just push it to the cartItems
       if(!found) {
-        state.cartItems.push({ id: payload.id, price: payload.price, quantity: payload.quantity });
+        state.cartItems.push({ id: payload.id, name: payload.name, price: payload.price, quantity: payload.quantity });
       }
       //Calculate the total amount
       state.calcTotal();
