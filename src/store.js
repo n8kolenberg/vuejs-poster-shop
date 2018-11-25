@@ -6,7 +6,18 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     total: 0,
-    cartItems: []
+    cartItems: [],
+    calcTotal() {
+      var number = 0;
+      //For each item in the cart, we multiply quantity by price and add it to variable number
+      this.cartItems.forEach((val, index, arr)=>{
+        number += (val.quantity * val.price);
+      });
+      //Then at the end, we set total to number. 
+      //When function runs again, number will be made zero
+      this.total = number;
+      number = undefined; //To clean
+    }
   },
   //Get the total to show in the basket
   getters: {
@@ -35,22 +46,26 @@ export default new Vuex.Store({
       if(!found) {
         state.cartItems.push({ id: payload.id, price: payload.price, quantity: payload.quantity });
       }
-      //Increase the overall cart total
-      state.total += payload.price;
-      console.log(`Total: ${state.total}`);
+      //Calculate the total amount
+      state.calcTotal();
+      
     },
     
     decreaseTotal(state, payload) {
       //Iterate through all the cartItems in the store
       state.cartItems.forEach((val, index, array)=>{
+        //If we find the item and there's more than 1..
         if(val.id == payload.id && val.quantity > 1) {
+          //..deduct from it
           val.quantity--;
+          //If found and there's just 1 left, we need to remove it from the store cartItems
         } else if(val.id == payload.id && val.quantity == 1) {
-          array.splice(index-1, 1);
+          array.splice(index, 1);
         } 
         
       });
-      //state.total = the quantity of all the cartItems times their individual prices
+      //Calculate the total amount
+      state.calcTotal();
     }
 
   },
