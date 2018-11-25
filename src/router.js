@@ -5,7 +5,7 @@ import Home from './views/Home.vue'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: 'history', //This ensures that we don't get a # at the end of the urls
   base: process.env.BASE_URL,
   routes: [
     {
